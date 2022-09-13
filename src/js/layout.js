@@ -25,10 +25,10 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/character/:theid">
+						<Route exact path="/character/:id">
 							<Character />
 						</Route>
-						<Route exact path="/planet/:theid">
+						<Route exact path="/planet/:id">
 							<Planet />
 						</Route>
 						<Route>

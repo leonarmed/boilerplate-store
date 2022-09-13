@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const res = await fetch(store.API_URL+path)
 					if(!res.ok) throw new Error(`Invalid response, Response status: ${res.status}`)
 					const body = await res.json()
-					return(body.results)
+					return(body.results ? body.results : body.result)
 				} catch (error) {
 					console.log(error)
 				}

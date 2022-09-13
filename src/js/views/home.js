@@ -14,12 +14,12 @@ export const Home = () => {
 		getPlanets()
 	},[])
 
-	const getCharacters = async() => {
+	const getCharacters = async () => {
 		const characters = await actions.request("/people")
 		setCharacters(characters)
 	}
 
-	const getPlanets = async() => {
+	const getPlanets = async () => {
 		const planets = await actions.request("/planets")
 		setPlanets(planets)
 	}

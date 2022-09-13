@@ -1,0 +1,9 @@
+.planet-container .image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.planet-container .image img{
+    width: 250px;
+    border-radius: 50%;
+}
