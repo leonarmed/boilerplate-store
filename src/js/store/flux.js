@@ -2,7 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			API_URL: "https://www.swapi.tech/api",
-			characters: undefined
+			characters: undefined,
+			favorites:[]
 		},
 		actions: {
 			// getCharacters: async() => {
@@ -30,6 +31,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log(error)
 				}
+			},
+			addFavorites: (id, name) => {
+				const store = getStore()
+				console.log(store.favorites.length)
+				if(store.favorites.length===0){
+					setStore({favorites:[{id:id, name:name}]})	
+				}else{
+					store.favorites.map(favorite => {
+						if(favorite['id']===id){
+							const newFavorites = store.favorites.filter(favorite => favorite['id']!==id)
+							setStore({favorites:newFavorites})
+						}else{
+							setStore({favorites: [...store.favorites, {id:id, name:name}]})
+						}
+					})
+				}
+				
 			},
 			loadSomeData: () => {
 				/**

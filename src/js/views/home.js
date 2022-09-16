@@ -23,7 +23,7 @@ export const Home = () => {
 		const planets = await actions.request("/planets")
 		setPlanets(planets)
 	}
-	console.log(characters, '/', planets)
+
 	return(
 		<div className="text-center mt-5">
 			<CharacterCard characters={characters} />

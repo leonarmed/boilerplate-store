@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Context } from '../../store/appContext.js'
 import { SpinnerComponent } from '../Spinner/index.jsx'
 const urlImage = "https://starwars-visualguide.com/assets/img/characters/"
 
 export const CharacterCard = ({characters}) => {
+    const {store, actions} = useContext(Context)
+    useEffect(()=>{
+        console.log(store,'///')
+    })
     return (
         <div className="container-fluid mb-4" style={{maxWidth: '80%'}}>
             <h3 className="text-start" style={{color:'red'}}>Characters</h3>
@@ -19,9 +24,9 @@ export const CharacterCard = ({characters}) => {
                                             <h5 className="card-title">{character.name}</h5>
                                             <div className="d-flex justify-content-between">
                                                 <Link to={`/character/${character.uid}`}>
-                                                    <a className="btn btn-outline-primary">Learn more!</a>
+                                                    <div className="btn btn-outline-primary">Learn more!</div>
                                                 </Link>
-                                                <a href="#" className="btn btn-outline-warning"><i className="far fa-heart"></i></a>
+                                                <div className="btn btn-outline-warning" onClick={()=>{actions.addFavorites(character.uid, character.name)}}><i className="far fa-heart"></i></div>
                                             </div>
                                         </div>
                                     </div>
