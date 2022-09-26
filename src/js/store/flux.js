@@ -32,22 +32,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 			},
-			addFavorites: (id, name) => {
+			addFavorites: (id, name, type) => {
 				const store = getStore()
-				console.log(store.favorites.length)
 				if(store.favorites.length===0){
-					setStore({favorites:[{id:id, name:name}]})	
+					setStore({favorites:[{id, name, type}]})	
 				}else{
-					store.favorites.map(favorite => {
-						if(favorite['id']===id){
-							const newFavorites = store.favorites.filter(favorite => favorite['id']!==id)
-							setStore({favorites:newFavorites})
-						}else{
-							setStore({favorites: [...store.favorites, {id:id, name:name}]})
-						}
-					})
+					const newFavorites = store.favorites.filter(favorite => favorite['id']!==id && favorite['type']===type)
+					if(newFavorites.length != store.favorites.length){
+						setStore({favorites: newFavorites })
+					}else{
+						setStore({favorites: [...store.favorites, {id, name, type}]})
+					}
 				}
 				
+			},
+			removeFavorites: (id, type) => {
+				const store = getStore()
+				const newFavorites = store.favorites.filter(favorite => favorite['id']!==id && favorite['type']===type)
+				setStore({favorites: newFavorites})
+			},
+			isFavorite: (id, type) => {
+				const store = getStore()
+				let isFavorite = false
+				store.favorites.map(favorite => {
+					if(favorite.type === type && favorite.id === id){
+						isFavorite = true
+					}
+				})
+				return isFavorite
 			},
 			loadSomeData: () => {
 				/**

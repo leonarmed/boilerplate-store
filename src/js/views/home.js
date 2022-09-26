@@ -8,7 +8,7 @@ export const Home = () => {
 	const { store, actions } = useContext(Context)
 	const [ characters, setCharacters ] = useState([])
 	const [ planets, setPlanets ] = useState([])
-
+console.log(store.favorites)
 	useEffect(() => {
 		getCharacters()
 		getPlanets()

@@ -6,9 +6,7 @@ const urlImage = "https://starwars-visualguide.com/assets/img/characters/"
 
 export const CharacterCard = ({characters}) => {
     const {store, actions} = useContext(Context)
-    useEffect(()=>{
-        console.log(store,'///')
-    })
+
     return (
         <div className="container-fluid mb-4" style={{maxWidth: '80%'}}>
             <h3 className="text-start" style={{color:'red'}}>Characters</h3>
@@ -26,7 +24,7 @@ export const CharacterCard = ({characters}) => {
                                                 <Link to={`/character/${character.uid}`}>
                                                     <div className="btn btn-outline-primary">Learn more!</div>
                                                 </Link>
-                                                <div className="btn btn-outline-warning" onClick={()=>{actions.addFavorites(character.uid, character.name)}}><i className="far fa-heart"></i></div>
+                                                <div className={`btn btn-outline-warning ${actions.isFavorite(character.uid, 'character') && 'active'}`} onClick={()=>{actions.addFavorites(character.uid, character.name, 'character')}}><i className="far fa-heart"></i></div>
                                             </div>
                                         </div>
                                     </div>
