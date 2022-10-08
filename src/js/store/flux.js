@@ -34,21 +34,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			addFavorites: (id, name, type) => {
 				const store = getStore()
-				if(store.favorites.length===0){
-					setStore({favorites:[{id, name, type}]})	
+				const filteredFavorites = store.favorites.filter((favorite) => favorite.id !== id)
+				if(store.favorites.length == filteredFavorites.length){
+					setStore({favorites: [...store.favorites, {id, name, type}]})
 				}else{
-					const newFavorites = store.favorites.filter(favorite => favorite['id']!==id && favorite['type']===type)
-					if(newFavorites.length != store.favorites.length){
-						setStore({favorites: newFavorites })
-					}else{
-						setStore({favorites: [...store.favorites, {id, name, type}]})
-					}
+					setStore({favorites: filteredFavorites})
 				}
-				
 			},
 			removeFavorites: (id, type) => {
 				const store = getStore()
-				const newFavorites = store.favorites.filter(favorite => favorite['id']!==id && favorite['type']===type)
+				const newFavorites = store.favorites.filter(favorite => favorite['id']!==id)
 				setStore({favorites: newFavorites})
 			},
 			isFavorite: (id, type) => {

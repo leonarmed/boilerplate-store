@@ -16,7 +16,7 @@ export const CharacterCard = ({characters}) => {
                         characters ? (
                             characters.map((character) => {
                                 return(
-                                    <div key={character.uid} className="card mb-3 me-4" style={{minWidth: "300px"}}>
+                                    <div key={`${character.uid}-character`} className="card mb-3 me-4" style={{minWidth: "300px"}}>
                                         <img src={`${urlImage}/${character.uid}.jpg`} className="card-img-top" alt={`imagen de ${character.name}`} style={{minHeight:'300px'}}/>
                                         <div className="card-body text-start">
                                             <h5 className="card-title">{character.name}</h5>
@@ -24,7 +24,7 @@ export const CharacterCard = ({characters}) => {
                                                 <Link to={`/character/${character.uid}`}>
                                                     <div className="btn btn-outline-primary">Learn more!</div>
                                                 </Link>
-                                                <div className={`btn btn-outline-warning ${actions.isFavorite(character.uid, 'character') && 'active'}`} onClick={()=>{actions.addFavorites(character.uid, character.name, 'character')}}><i className="far fa-heart"></i></div>
+                                                <div className={`btn btn-outline-warning ${actions.isFavorite(`${character.uid}-character`, 'character') && 'active'}`} onClick={()=>{actions.addFavorites(`${character.uid}-character`, character.name, 'character')}}><i className="far fa-heart"></i></div>
                                             </div>
                                         </div>
                                     </div>

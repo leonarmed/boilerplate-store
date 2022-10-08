@@ -17,7 +17,7 @@ export const PlanetCard = ({planets}) => {
                         planets ? (
                             planets.map((planet) => {
                                 return(
-                                    <div key={planet.uid} className="card mb-3 me-4" style={{minWidth: "300px"}}>
+                                    <div key={`${planet.uid}-planet`} className="card mb-3 me-4" style={{minWidth: "300px"}}>
                                         <img src={planet.uid === '1' ? tatooinePlanet : `${urlImage}/${planet.uid}.jpg`} className="card-img-top" alt={`imagen de ${planet.name}`} style={{minHeight:'300px'}} />
                                         <div className="card-body text-start">
                                             <h5 className="card-title">{planet.name}</h5>
@@ -25,7 +25,7 @@ export const PlanetCard = ({planets}) => {
                                                 <Link to={`/planet/${planet.uid}`}>
                                                     <div className="btn btn-outline-primary">Learn more!</div>
                                                 </Link>
-                                                <a href="#" className={`btn btn-outline-warning ${actions.isFavorite(planet.uid, 'planet') && 'active'}`} onClick={()=>{actions.addFavorites(planet.uid, planet.name, 'planet')}}><i className="far fa-heart"></i></a>
+                                                <a href="#" className={`btn btn-outline-warning ${actions.isFavorite(`${planet.uid}-planet`, 'planet') && 'active'}`} onClick={()=>{actions.addFavorites(`${planet.uid}-planet`, planet.name, 'planet')}}><i className="far fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>

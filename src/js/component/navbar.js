@@ -23,8 +23,7 @@ export const Navbar = () => {
 						</button>
 						<ul className="dropdown-menu">
 							{favorites && favorites.map(favorite => {
-								// console.log(favorite.id, '///', favorite.name)
-								return <li key={parseInt(favorite.id)} onClick={() => actions.removeFavorites(favorite.id, favorite.type)} className="d-flex align-items-center"><a className="dropdown-item">{favorite.name}</a><i className="fas fa-trash-alt me-2"></i></li>
+								return <li key={favorite.id} onClick={() => actions.removeFavorites(favorite.id, favorite.type)} className="d-flex align-items-center"><a className="dropdown-item">{favorite.name}</a><i className="fas fa-trash-alt me-2"></i></li>
 							})}
 						</ul>
 					</div>
