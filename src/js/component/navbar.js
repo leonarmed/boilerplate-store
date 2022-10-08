@@ -1,6 +1,7 @@
 import React, {useContext, useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import withoutFavorites from '../../img/broken-heart.png'
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context)
@@ -22,9 +23,16 @@ export const Navbar = () => {
 							Favorites{store.favorites.length>0 && `: ${store.favorites.length}`}
 						</button>
 						<ul className="dropdown-menu">
-							{favorites && favorites.map(favorite => {
+							{favorites.length>0 ? favorites.map(favorite => {
 								return <li key={favorite.id} onClick={() => actions.removeFavorites(favorite.id, favorite.type)} className="d-flex align-items-center"><a className="dropdown-item">{favorite.name}</a><i className="fas fa-trash-alt me-2"></i></li>
-							})}
+							}):
+							<li style={{width:'100%', textAlign:'center'}}>
+								<div style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
+									<img src={withoutFavorites} alt="whitout favorites" width="30px"/>
+									<span>Without favorite</span>
+								</div>
+							</li>
+							}
 						</ul>
 					</div>
 				</div>
